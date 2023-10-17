@@ -1,0 +1,95 @@
+Language: c
+Input: Sun rises in the east
+Output: 'Sun','rises','in','the','east'
+Text: convert sentence to words
+Generated Code:
+Here is the code to convert a sentence to words in C:
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char sentence[100];
+    char *word;
+
+    printf("Enter a sentence: ");
+    fgets(sentence, sizeof(sentence), stdin);
+
+    // Remove newline character from the end of the sentence
+    sentence[strcspn(sentence, "\n")] = '\0';
+
+    // Tokenize the sentence into words
+    word = strtok(sentence, " ");
+    while (word != NULL) {
+        printf("'%s',", word);
+        word = strtok(NULL, " ");
+    }
+
+    return 0;
+}
+```
+
+This code uses the `strtok()` function from the `string.h` library to tokenize the sentence into individual words. It uses a space as the delimiter to split the sentence into words.
+
+Note that this code assumes the maximum sentence length is 100 characters. You can adjust this value as needed.
+Tokens: 0
+Language: c
+Input: Sun rises in the east
+Output: 'Sun','rises','in','the','east'
+Text: convert sentence to words
+Generated Code:
+Here is a simple C code that converts a sentence into separate words:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_WORDS 100
+
+int main() {
+    char sentence[1000];
+    char *words[MAX_WORDS];
+    int wordCount = 0;
+    
+    printf("Enter a sentence: ");
+    fgets(sentence, sizeof(sentence), stdin);
+    
+    // Tokenize the sentence into words
+    char *token = strtok(sentence, " ");
+    
+    while (token != NULL && wordCount < MAX_WORDS) {
+        // Remove newline character from each word
+        char *newline = strchr(token, '\n');
+        if (newline != NULL)
+            *newline = '\0';
+        
+        // Store the word in the words array
+        words[wordCount] = strdup(token);
+        wordCount++;
+        
+        // Get the next word
+        token = strtok(NULL, " ");
+    }
+    
+    // Print the words
+    printf("Words: ");
+    for (int i = 0; i < wordCount; i++) {
+        printf("'%s'", words[i]);
+        if (i != wordCount - 1)
+            printf(", ");
+    }
+    printf("\n");
+    
+    // Free the memory allocated for each word
+    for (int i = 0; i < wordCount; i++) {
+        free(words[i]);
+    }
+    
+    return 0;
+}
+```
+
+This code uses the `strtok` function from the `string.h` library to tokenize the sentence into individual words based on spaces. It stores each word in the `words` array and then prints them out. The code also takes care of removing the newline character (`\n`) from each word.
+Tokens: 0
